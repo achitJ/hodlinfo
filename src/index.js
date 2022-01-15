@@ -2,6 +2,7 @@ require('dotenv').config({ path: './config/config.env' })
 
 const express = require('express');
 const app = express();
+const cors = require('cors');
 
 require('./db');
 
@@ -13,6 +14,7 @@ const getData = require('./router/getData');
 
 const port = process.env.PORT || 5000;  
 
+app.use(cors());
 app.use(express.json());
 
 app.get('/', (req, res) => {

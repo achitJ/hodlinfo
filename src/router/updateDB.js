@@ -48,7 +48,7 @@ router.patch('/updateDatabase', async (req, res, next) => {
 
         logger.http("Database Updated");
     
-        res.status(200).send(`Database updated at {${new Date()}}`);
+        res.status(200).send({ message: `Database updated at {${new Date()}}` });
     } 
     catch(error) {
 
