@@ -1,4 +1,5 @@
 const express = require('express');
+const logger = require('../logger');
 const router = new express.Router();
 const Ticker = require('../models/tickers');
 
@@ -8,9 +9,13 @@ router.get('/', async (req, res, next) => {
 
         const tickers = await Ticker.find();
 
+        logger.http("Tickers fetched");
+
         res.status(200).send(tickers);
     }
     catch(error) {
+
+        logger.error(error);
 
         let errorMessage = '';
         let errorType = '';

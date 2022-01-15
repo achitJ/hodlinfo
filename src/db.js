@@ -14,6 +14,8 @@ mongoose.set('bufferCommands', false);
         console.log("Connected to MongoDB");
     }
     catch(error) {
+
+        logger.error(error);
         
         return error;
     } 

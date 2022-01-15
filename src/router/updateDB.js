@@ -1,5 +1,6 @@
 const express = require('express');
 const router = new express.Router();
+const logger = require('../logger');
 const updateDB = require('../utils/getDB');
 const Ticker = require('../models/tickers');
 
@@ -44,11 +45,14 @@ router.patch('/updateDatabase', async (req, res, next) => {
             if(index === 9) break;
             index++;
         }
+
+        logger.http("Database Updated");
     
         res.status(200).send(`Database updated at {${new Date()}}`);
     } 
     catch(error) {
 
+        logger.error(error);
 
         let errorMessage = '';
         let errorType = '';

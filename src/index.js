@@ -6,6 +6,7 @@ const app = express();
 require('./db');
 
 const errorHandler = require('./middleware/errorHandler');
+const logger = require('./logger');
 
 const updateDB = require('./router/updateDB');
 const getData = require('./router/getData');
@@ -16,6 +17,7 @@ app.use(express.json());
 
 app.get('/', (req, res) => {
 
+    logger.info("Hello World");
     res.send("Hello World");
 });
 
@@ -25,7 +27,14 @@ app.use('/api/v1/', getData);
 
 app.use(errorHandler);
 
-app.listen(port, () => {
+(async () => {
+    app.listen(port, (error) => {
 
-    console.log(`Server chal gaya ${port} pe!`);
-});
+        if(error) {
+
+            logger.error(error);
+        }
+
+        console.log(`Server chal gaya ${port} pe!`);
+    });
+})()
