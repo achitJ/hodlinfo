@@ -13,7 +13,7 @@ theme.addEventListener('change', () => {
     }
 });
 
-const host = "http://localhost:5000";
+const host = "https://hodlinfo-achitj.herokuapp.com";
 
 const updateData = async () => {
 
